@@ -1,18 +1,23 @@
 <template>
-  <div class="bg-gray-800 py-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <div>
-        <NuxtLink to="/cadastro" class="text-white text-lg font-bold mr-4 hover:underline">Cadastro</NuxtLink>
-        <NuxtLink to="/paises" class="text-white text-lg font-bold mr-4 hover:underline">Lista de Países</NuxtLink>
-        <NuxtLink to="/grafico" class="text-white text-lg font-bold mr-4 hover:underline">Gráficos</NuxtLink>
-        <NuxtLink to="/busca" class="text-white text-lg font-bold hover:underline">Busca por País</NuxtLink>
+  <div>
+    <NavBar />
+    <div class="container mx-auto mt-20 text-center">
+      <div class="bg-gray-800 inline-block p-4 rounded ">
+        <img src="../assets/images/logo-suthub.png" alt="Suthub Logo" class="mx-auto">
       </div>
+      <h1 class="text-3xl font-bold">Bem-vindo ao Teste Técnico Suthub</h1>
+      <p class="mt-4">Navegue pelo menu acima para acessar as funcionalidades disponíveis.</p>
     </div>
   </div>
 </template>
 
 <script>
+import NavBar from '~/components/NavBar.vue'
+
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  components: {
+    NavBar
+  }
 }
 </script>
