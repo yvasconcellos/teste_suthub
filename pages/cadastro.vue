@@ -149,7 +149,6 @@ const availableBreeds = computed(() => {
 
 const validateCEP = (submit) => {
   const cepValue = cep.value.replace(/\D/g, '');
-  console.log(submit);
   if (cepValue.length !== 8) {
     cepError.value = true;
     return false
