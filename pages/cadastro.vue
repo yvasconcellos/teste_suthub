@@ -54,7 +54,8 @@
           <div class="mb-4">
             <label class="block text-gray-700 mb-2">CEP</label>
             <input v-model.trim="cep" type="text" class="form-input w-full border-gray-300 rounded-md"
-              placeholder="Informe seu CEP" required @input="fetchAddress" v-mask="'#####-###'">
+              placeholder="Informe seu CEP" required @blur="(e) => validateCEP(false)" v-mask="'#####-###'">
+            <span v-if="cepError" class="text-red-500 text-sm mt-1">CEP inválido</span>
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 mb-2">Rua</label>
@@ -125,6 +126,7 @@ const neighborhood = ref('');
 const city = ref('');
 const state = ref('');
 const cpfError = ref(false);
+const cepError = ref(false);
 const showModal = ref(false);
 
 const maxDate = computed(() => {
@@ -145,8 +147,23 @@ const availableBreeds = computed(() => {
     : ['Persa', 'Siamês', 'Maine Coon', 'Sphynx', 'Ragdoll'];
 });
 
+const validateCEP = (submit) => {
+  const cepValue = cep.value.replace(/\D/g, '');
+  console.log(submit);
+  if (cepValue.length !== 8) {
+    cepError.value = true;
+    return false
+  } else {
+    cepError.value = false;
+    if (submit) {
+      return true
+    }
+    return fetchAddress();
+  }
+};
+
 const fetchAddress = async () => {
-  if (cep.value.length === 9) {
+  if (!cepError.value) {
     try {
       const response = await axios.get(`https://viacep.com.br/ws/${cep.value}/json/`);
       if (response.data) {
@@ -154,10 +171,12 @@ const fetchAddress = async () => {
         neighborhood.value = response.data.bairro;
         city.value = response.data.localidade;
         state.value = response.data.uf;
+        return true
       }
     } catch (error) {
       console.error('Erro ao buscar endereço:', error);
       alert('Erro ao buscar endereço. Verifique se o CEP está correto.');
+      return false
     }
   }
 };
@@ -216,7 +235,7 @@ const formatDate = (date) => {
 };
 
 const handleSubmit = () => {
-  if (validateCPF()) {
+  if (validateCPF() && validateCEP(true)) {
     showModal.value = true;
   }
 };
