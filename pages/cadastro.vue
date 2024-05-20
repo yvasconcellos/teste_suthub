@@ -86,7 +86,7 @@
         <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
           <h2 class="text-2xl font-semibold mb-4 text-gray-800">Confirmação dos Dados</h2>
           <p><strong>Nome Completo:</strong> {{ fullName }}</p>
-          <p><strong>Data de Nascimento:</strong> {{ dob }}</p>
+          <p><strong>Data de Nascimento: </strong>{{ formatDate(dob) }}</p>
           <p><strong>CPF:</strong> {{ cpf }}</p>
           <p><strong>Espécie do Pet:</strong> {{ petSpecies }}</p>
           <p><strong>Raça do Pet:</strong> {{ petBreed === 'outro' ? otherBreed : petBreed }}</p>
@@ -208,6 +208,11 @@ const validateCPF = () => {
 
 const stateToUpper = () => {
   state.value = state.value.toUpperCase();
+};
+
+const formatDate = (date) => {
+  const [year, month, day] = date.split('-');
+  return `${day}/${month}/${year}`;
 };
 
 const handleSubmit = () => {
