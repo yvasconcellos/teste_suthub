@@ -83,7 +83,7 @@
           </div>
         </form>
       </div>
-      <div v-if="showModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 flex justify-center items-center">
+      <div v-if="showModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 flex justify-center items-center px-4">
         <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
           <h2 class="text-2xl font-semibold mb-4 text-gray-800">Confirmação dos Dados</h2>
           <p><strong>Nome Completo:</strong> {{ fullName }}</p>

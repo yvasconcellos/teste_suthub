@@ -9,7 +9,7 @@
       </div>
 
       <ul v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <li v-for="country in countries" :key="country.alpha3Code" @click="openGoogleMaps(country)">
+        <li v-for="country in sortedCountries" :key="country.alpha3Code" @click="openGoogleMaps(country)">
           <div class="bg-white p-4 rounded-lg shadow-md cursor-pointer hover:bg-gray-100 transition duration-300">
             <h2 class="text-lg font-semibold">{{ country.name.common }}</h2>
             <p>{{ `Capital: ${country.capital}` }}</p>
@@ -40,6 +40,16 @@ onMounted(async () => {
     loading.value = false;
     errorMessage.value = 'Erro ao buscar países. Por favor, tente novamente mais tarde.';
   }
+});
+
+const sortedCountries = computed(() => {
+  return countries.value.slice().sort((a, b) => {
+    const nameA = a.name.common.toLowerCase();
+    const nameB = b.name.common.toLowerCase();
+    if (nameA < nameB) return -1;
+    if (nameA > nameB) return 1;
+    return 0;
+  });
 });
 
 const openGoogleMaps = (country) => {

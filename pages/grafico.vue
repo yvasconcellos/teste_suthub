@@ -33,6 +33,12 @@ export default {
         const response = await axios.get('https://restcountries.com/v3.1/region/americas');
         const countries = response.data;
 
+        countries.sort((a, b) => {
+          if (a.population < b.population) return 1;
+          if (a.population > b.population) return -1;
+          return 0;
+        });
+
         const countryNames = countries.map(country => country.name.common);
         const countryAreas = countries.map(country => country.area);
         const countryPopulations = countries.map(country => country.population);
@@ -119,7 +125,7 @@ export default {
 </script>
 
 <style scoped>
-  .relative {
-    height: 75vh;
-  }
+.relative {
+  height: 75vh;
+}
 </style>
