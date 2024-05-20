@@ -95,6 +95,7 @@
 import { ref, computed } from 'vue';
 import axios from 'axios';
 
+
 const fullName = ref('');
 const dob = ref('');
 const cpf = ref('');
