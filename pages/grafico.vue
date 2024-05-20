@@ -5,7 +5,9 @@
       <h1 class="text-3xl font-semibold mb-6 text-center text-gray-800">
         Gráfico de Área e População dos Países da América
       </h1>
-      <div class="bg-white p-6 rounded-lg shadow-md overflow-auto">
+      <div v-if="errorMessage" class="text-red-500 text-center mt-4">{{ errorMessage }}</div>
+
+      <div v-else class="bg-white p-6 rounded-lg shadow-md overflow-auto">
         <div class="relative" style="height: 75vh;">
           <canvas ref="chartCanvas"></canvas>
         </div>
@@ -24,6 +26,7 @@ export default {
   setup() {
     const chartCanvas = ref(null);
     let chart = null;
+    const errorMessage = ref(null);
 
     onMounted(async () => {
       try {
@@ -102,12 +105,14 @@ export default {
         }
       } catch (error) {
         console.error('Error fetching countries:', error);
+        errorMessage.value = 'Erro ao buscar países. Por favor, tente novamente mais tarde.';
       }
     });
 
     return {
       chartCanvas,
-      chart
+      chart,
+      errorMessage
     };
   }
 };
