@@ -7,7 +7,7 @@
       </div>
   
       <ul v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <li v-for="country in filteredCountries" :key="country.alpha3Code" @click="openGoogleMaps(country)">
+        <li v-for="country in countries" :key="country.alpha3Code" @click="openGoogleMaps(country)">
           <div class="bg-white p-4 rounded-lg shadow-md cursor-pointer hover:bg-gray-100 transition duration-300">
             <h2 class="text-lg font-semibold">{{ country.name.common }}</h2>
             <p>{{ `Capital: ${country.capital}` }}</p>
@@ -26,18 +26,14 @@
   
   onMounted(async () => {
     try {
-      const response = await axios.get('https://restcountries.com/v3.1/all');
+      const response = await axios.get('https://restcountries.com/v3.1/region/americas');
       if (response.data) {
-        countries.value = response.data.filter(country => country.region === 'Americas');
+        countries.value = response.data;
         loading.value = false;
       }
     } catch (error) {
       console.error('Error fetching countries:', error);
     }
-  });
-  
-  const filteredCountries = computed(() => {
-    return countries.value.filter(country => country.region === 'Americas');
   });
   
   const openGoogleMaps = (country) => {
