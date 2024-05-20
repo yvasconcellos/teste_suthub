@@ -54,7 +54,7 @@ Uma página com um gráfico que mostra a área e população de cada país de um
 1. **Clone o repositório:**
    ```sh
    git clone https://github.com/yvasconcellos/teste_suthub.git
-   cd teste-suthub
+   cd teste_suthub
    ```
 2. **Instale as dependências:**
    ```sh
