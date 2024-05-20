@@ -1,6 +1,6 @@
 <template>
   <div class="bg-gray-800 py-4">
-    <div class="container mx-auto flex justify-between items-center px-4">
+    <div class="container mx-auto flex justify-between items-center px-4 py-1">
       <div class="text-white text-lg font-bold">
         <NuxtLink to="/" class="hover:underline">Inicio</NuxtLink>
       </div>
@@ -19,10 +19,10 @@
       </div>
     </div>
     <div v-if="isMenuOpen" class="md:hidden bg-gray-800 px-4">
-      <NuxtLink to="/cadastro" class="block text-white text-lg font-bold py-2 hover:underline">Cadastro</NuxtLink>
-      <NuxtLink to="/paises" class="block text-white text-lg font-bold py-2 hover:underline">Lista de Países</NuxtLink>
-      <NuxtLink to="/busca" class="block text-white text-lg font-bold py-2 hover:underline">Busca por País</NuxtLink>
-      <NuxtLink to="/grafico" class="block text-white text-lg font-bold py-2 hover:underline">Gráficos</NuxtLink>
+      <NuxtLink to="/cadastro" class="block text-white text-lg font-bold py-1 hover:underline">Cadastro</NuxtLink>
+      <NuxtLink to="/paises" class="block text-white text-lg font-bold py-1 hover:underline">Lista de Países</NuxtLink>
+      <NuxtLink to="/busca" class="block text-white text-lg font-bold py-1 hover:underline">Busca por País</NuxtLink>
+      <NuxtLink to="/grafico" class="block text-white text-lg font-bold py-1 hover:underline">Gráficos</NuxtLink>
     </div>
   </div>
 </template>
